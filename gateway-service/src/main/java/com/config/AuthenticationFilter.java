@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -26,13 +27,18 @@ public class AuthenticationFilter implements GatewayFilter {
         ServerHttpRequest request = exchange.getRequest();
 
         if (routerValidator.isSecured.test(request)) {
-            if (this.isAuthMissing(request))
+            if (this.isAuthMissing(request)) {
                 return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
+            }
 
             final String token = this.getAuthHeader(request);
 
-            if (jwtUtil.isInvalid(token))
+            System.out.println("token is " + token);
+
+            if (jwtUtil.isInvalid(token)) {
+                System.out.println("Token is not valid");
                 return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
+            }
 
             this.populateRequestWithHeaders(exchange, token);
         }
@@ -49,11 +55,17 @@ public class AuthenticationFilter implements GatewayFilter {
     }
 
     private String getAuthHeader(ServerHttpRequest request) {
-        return request.getHeaders().getOrEmpty("Authorization").get(0);
+
+        String token = request.getHeaders().getOrEmpty("Authorization").get(0);
+        if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
+            return token.substring(7, token.length());
+        }
+        return null;
     }
 
     private boolean isAuthMissing(ServerHttpRequest request) {
-        return !request.getHeaders().containsKey("Authorization");
+        return !request.getHeaders().containsKey("Authorization")
+                || !request.getHeaders().getOrEmpty("Authorization").get(0).startsWith("Bearer ");
     }
 
     private void populateRequestWithHeaders(ServerWebExchange exchange, String token) {
