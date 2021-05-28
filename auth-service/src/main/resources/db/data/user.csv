@@ -1,0 +1,2 @@
+id;email;email_verified;image_url;name;password;provider;provider_id;reset_token;reset_date
+1;test@gmail.com;1;;Shahin Alam;$2a$10$HR8P8.VG3MtrPjWdUM6ayOZo8qzTGW9Gdqx/bO0F42WnP97oaOyA.;local;;;

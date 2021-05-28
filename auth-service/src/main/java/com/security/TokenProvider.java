@@ -40,7 +40,7 @@ public class TokenProvider {
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", userPrincipal.getId());
-        claims.put("role", "ROLE_USER");
+        claims.put("role", userPrincipal.getAuthorities());
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(String.valueOf(userPrincipal.getId()))
