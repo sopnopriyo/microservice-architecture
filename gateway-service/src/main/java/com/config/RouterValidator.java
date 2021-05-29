@@ -13,7 +13,7 @@ public class RouterValidator {
     public static final List<String> openApiEndpoints = Arrays.asList(
             "/auth/signup",
             "/auth/login",
-            "/oauth2/**"
+            "/oauth2/authorize/google"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

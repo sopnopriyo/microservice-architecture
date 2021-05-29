@@ -33,8 +33,6 @@ public class AuthenticationFilter implements GatewayFilter {
 
             final String token = this.getAuthHeader(request);
 
-            System.out.println("token is " + token);
-
             if (jwtUtil.isInvalid(token)) {
                 System.out.println("Token is not valid");
                 return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);

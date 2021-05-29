@@ -21,9 +21,13 @@ public class GatewayConfig {
 //                        .filters(f -> f.filter(filter))
 //                        .uri("lb://user-service"))
 
-                .route("authentication-service", r -> r.path("/auth/**", "/users/**", "/oauth2/**")
-                        .filters(f -> f.filter(filter))
-                        .uri("lb://authentication-service"))
+                .route("auth-service", r -> r.path("/auth/**", "/users/**", "/oauth2/**")
+                        .filters(f -> {
+                            f.addRequestHeader("x-forwarded-for", "localhost");
+                            f.filter(filter);
+                            return f;
+                        })
+                        .uri("lb://auth-service"))
                 .build();
     }
 

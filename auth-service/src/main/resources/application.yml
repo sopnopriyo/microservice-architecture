@@ -55,7 +55,7 @@ spring:
 app:
   auth:
     tokenSecret: BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY
-    tokenExpirationMsec: 864000000
+    tokenExpirationMsec: 1800000
   oauth2:
     # After successfully authenticating with the OAuth2 Provider,
     # we'll be generating an auth token for the user and sending the token to the
