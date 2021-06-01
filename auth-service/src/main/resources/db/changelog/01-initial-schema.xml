@@ -63,18 +63,18 @@
                                  referencedTableName="user"/>
 
 
-        <loadData
-                file="db/data/user.csv"
-                separator=";"
-                tableName="user"/>
+<!--        <loadData-->
+<!--                file="db/data/user.csv"-->
+<!--                separator=";"-->
+<!--                tableName="user"/>-->
         <loadData
                 file="db/data/authority.csv"
                 separator=";"
                 tableName="authority"/>
-        <loadData
-                file="db/data/user_authority.csv"
-                separator=";"
-                tableName="user_authority"/>
+<!--        <loadData-->
+<!--                file="db/data/user_authority.csv"-->
+<!--                separator=";"-->
+<!--                tableName="user_authority"/>-->
 
     </changeSet>
 </databaseChangeLog>

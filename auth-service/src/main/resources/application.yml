@@ -11,6 +11,9 @@ spring:
           enabled: true
   application:
     name: auth-service
+  h2:
+    console:
+      enabled: true
   jpa:
     open-in-view: false
     properties:

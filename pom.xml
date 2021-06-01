@@ -12,8 +12,10 @@
         <module>config-service</module>
         <module>discovery-service</module>
         <module>gateway-service</module>
-        <module>departments-service</module>
+        <module>product-service</module>
         <module>auth-service</module>
+        <module>shopping-service</module>
+        <module>payment-service</module>
     </modules>
 
     <parent>
